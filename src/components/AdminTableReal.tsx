@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,13 +11,13 @@ interface Project {
   id: string;
   title: string;
   description: string;
-  type: 'website' | 'mobile';
+  type: string; // Changed from 'website' | 'mobile' to string
   budget: number;
   full_name: string;
   email: string;
   whatsapp: string | null;
   submitted_at: string;
-  status: 'pending' | 'accepted' | 'rejected';
+  status: string; // Changed from 'pending' | 'accepted' | 'rejected' to string
 }
 
 const AdminTableReal = () => {
@@ -56,7 +55,7 @@ const AdminTableReal = () => {
     }
   };
 
-  const handleStatusChange = async (projectId: string, newStatus: Project['status']) => {
+  const handleStatusChange = async (projectId: string, newStatus: string) => {
     try {
       const { error } = await supabase
         .from('projects')
@@ -90,7 +89,7 @@ const AdminTableReal = () => {
     }
   };
 
-  const getStatusBadge = (status: Project['status']) => {
+  const getStatusBadge = (status: string) => {
     switch (status) {
       case 'pending':
         return <Badge variant="outline" className="border-yellow-500 text-yellow-700 bg-yellow-50"><Clock className="w-3 h-3 mr-1" />En attente</Badge>;
@@ -103,7 +102,7 @@ const AdminTableReal = () => {
     }
   };
 
-  const getTypeIcon = (type: Project['type']) => {
+  const getTypeIcon = (type: string) => {
     return type === 'website' ? <Globe className="w-4 h-4" /> : <Smartphone className="w-4 h-4" />;
   };
 
