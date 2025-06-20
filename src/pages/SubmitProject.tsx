@@ -1,5 +1,6 @@
+
 import Header from '@/components/Header';
-import ProjectForm from '@/components/ProjectForm';
+import ProjectFormWithPopup from '@/components/ProjectFormWithPopup';
 import { ArrowLeft, Lightbulb } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -8,8 +9,8 @@ const SubmitProject = () => {
     <div className="min-h-screen bg-gradient-to-br from-light-gray to-white font-inter">
       <Header />
       
-      {/* Hero section */}
-      <section className="bg-gradient-to-r from-royal-blue to-purple-dark text-white py-16">
+      {/* Hero section avec dégradé harmonisé */}
+      <section className="bg-gradient-to-r from-royal-blue via-purple-dark to-sky-blue text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-2 mb-6">
@@ -40,12 +41,12 @@ const SubmitProject = () => {
       {/* Form section */}
       <section className="py-12 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ProjectForm />
+          <ProjectFormWithPopup />
         </div>
       </section>
 
-      {/* Info section */}
-      <section className="bg-royal-blue text-white py-16">
+      {/* Info section avec dégradé harmonisé */}
+      <section className="bg-gradient-to-r from-royal-blue via-purple-dark to-sky-blue text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
@@ -57,7 +58,7 @@ const SubmitProject = () => {
               <p className="text-sky-blue/90">Confidentialité garantie</p>
             </div>
             <div>
-              <div className="text-3xl font-bold text-sky-blue mb-2">400$</div>
+              <div className="text-3xl font-bold text-sky-blue mb-2">400€</div>
               <p className="text-sky-blue/90">Budget minimum</p>
             </div>
           </div>

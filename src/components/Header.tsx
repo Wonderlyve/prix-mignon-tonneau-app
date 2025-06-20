@@ -22,10 +22,10 @@ const Header = () => {
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+          {/* Logo avec dégradé harmonisé */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-royal-blue to-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-royal-blue via-purple-dark to-sky-blue rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">T</span>
               </div>
               <span className="text-2xl font-bold text-royal-blue font-inter">
@@ -43,7 +43,7 @@ const Header = () => {
                   to={item.href}
                   className={`px-3 py-2 rounded-md text-sm font-medium font-inter transition-colors ${
                     item.highlight
-                      ? 'bg-gradient-to-r from-royal-blue to-blue-600 text-white hover:from-royal-blue/90 hover:to-blue-600/90'
+                      ? 'bg-gradient-to-r from-royal-blue via-purple-dark to-sky-blue text-white hover:from-royal-blue/90 hover:via-purple-dark/90 hover:to-sky-blue/90'
                       : isActiveLink(item.href)
                       ? 'text-royal-blue bg-sky-blue/10'
                       : 'text-gray-700 hover:text-royal-blue hover:bg-light-gray'
@@ -87,7 +87,7 @@ const Header = () => {
                 to={item.href}
                 className={`block px-3 py-2 rounded-md text-base font-medium font-inter transition-all duration-200 transform ${
                   item.highlight
-                    ? 'bg-gradient-to-r from-royal-blue to-blue-600 text-white'
+                    ? 'bg-gradient-to-r from-royal-blue via-purple-dark to-sky-blue text-white'
                     : isActiveLink(item.href)
                     ? 'text-royal-blue bg-sky-blue/10'
                     : 'text-gray-700 hover:text-royal-blue hover:bg-light-gray'
