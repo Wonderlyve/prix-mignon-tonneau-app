@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import { ArrowLeft, CheckCircle, Mail, Rocket, Lightbulb, Shield, Clock, FileText, Users, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -8,25 +9,29 @@ const HowItWorksPage = () => {
       icon: Lightbulb,
       title: "1. Partagez votre idée",
       description: "Remplissez notre formulaire détaillé avec votre vision, vos objectifs et votre budget",
-      details: ["Description complète du projet", "Fonctionnalités souhaitées", "Public cible", "Budget disponible"]
+      details: ["Description complète du projet", "Fonctionnalités souhaitées", "Public cible", "Budget disponible"],
+      image: "/lovable-uploads/bc558741-9340-449e-91a4-17becb18ab0f.png"
     },
     {
       icon: FileText,
       title: "2. Notre équipe évalue",
       description: "Nous analysons la faisabilité technique et l'adéquation budget/projet",
-      details: ["Analyse de faisabilité", "Estimation du temps", "Vérification du budget", "Retour sous 5-7 jours"]
+      details: ["Analyse de faisabilité", "Estimation du temps", "Vérification du budget", "Retour sous 5-7 jours"],
+      image: "/lovable-uploads/d0e486ab-edfc-4355-9c52-43415e40d6f1.png"
     },
     {
       icon: CheckCircle,
       title: "3. Validation et planification",
       description: "Si votre projet est retenu, nous établissons un plan détaillé ensemble",
-      details: ["Cahier des charges", "Planning de développement", "Points de contrôle", "Communication régulière"]
+      details: ["Cahier des charges", "Planning de développement", "Points de contrôle", "Communication régulière"],
+      image: "/lovable-uploads/840664cb-5689-479e-b462-c5bfa5a86c08.png"
     },
     {
       icon: Rocket,
       title: "4. Développement et livraison",
       description: "Nous développons votre projet avec des retours réguliers jusqu'à la livraison",
-      details: ["Développement agile", "Démos régulières", "Tests qualité", "Formation à l'utilisation"]
+      details: ["Développement agile", "Démos régulières", "Tests qualité", "Formation à l'utilisation"],
+      image: "/lovable-uploads/0e53f3ac-b097-4542-87fc-94a32093a136.png"
     }
   ];
 
@@ -111,9 +116,13 @@ const HowItWorksPage = () => {
                 </div>
                 
                 <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                  <div className="bg-white p-8 rounded-3xl shadow-lg">
-                    <div className="aspect-square bg-gradient-to-br from-royal-blue/10 to-sky-blue/10 rounded-2xl flex items-center justify-center">
-                      <step.icon className="w-24 h-24 text-royal-blue" />
+                  <div className="bg-white p-8 rounded-3xl shadow-lg overflow-hidden">
+                    <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                      <img 
+                        src={step.image} 
+                        alt={step.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
                 </div>
@@ -123,8 +132,47 @@ const HowItWorksPage = () => {
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* Team collaboration section */}
       <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-royal-blue mb-6 font-inter">
+                Une équipe dédiée à votre succès
+              </h2>
+              <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+                Notre approche collaborative garantit que votre vision soit parfaitement comprise et réalisée selon vos attentes.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-sky-blue rounded-full"></div>
+                  <span className="text-gray-600">Communication transparente tout au long du projet</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-sky-blue rounded-full"></div>
+                  <span className="text-gray-600">Expertise technique et conseil stratégique</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-sky-blue rounded-full"></div>
+                  <span className="text-gray-600">Support continu après livraison</span>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-white p-8 rounded-3xl shadow-lg overflow-hidden">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                <img 
+                  src="/lovable-uploads/1cf04749-be77-4b2a-9509-067d955b09f1.png" 
+                  alt="Équipe collaborative"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="py-16 bg-light-gray">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-royal-blue mb-6 font-inter">
@@ -139,7 +187,7 @@ const HowItWorksPage = () => {
             {benefits.map((benefit, index) => (
               <div 
                 key={index} 
-                className="text-center p-8 bg-light-gray rounded-2xl hover:shadow-lg transition-all duration-300"
+                className="text-center p-8 bg-white rounded-2xl hover:shadow-lg transition-all duration-300"
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-royal-blue to-sky-blue rounded-2xl flex items-center justify-center mb-6 mx-auto">
                   <benefit.icon className="w-8 h-8 text-white" />
