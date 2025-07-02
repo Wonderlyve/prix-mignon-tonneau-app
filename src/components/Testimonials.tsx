@@ -2,27 +2,27 @@
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "Emma Rodriguez",
+      name: "Amina Kouassi",
       project: "Application de fitness personnalisée",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
+      image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop&crop=face",
       quote: "TonAppTonPrix a transformé mon idée en une application incroyable. L'équipe a respecté mon budget et mes délais !",
-      budget: "12 000€",
+      budget: "$15,000",
       status: "Lancée avec succès"
     },
     {
-      name: "Lucas Martin",
+      name: "Kwame Asante",
       project: "Marketplace pour créateurs",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
       quote: "Grâce à leur expertise, j'ai pu lancer ma plateforme en moins de 4 mois. Les résultats dépassent mes attentes !",
-      budget: "18 500€",
+      budget: "$23,000",
       status: "200+ utilisateurs actifs"
     },
     {
-      name: "Sarah Chen",
+      name: "Fatou Diallo",
       project: "Site e-commerce durable",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+      image: "https://images.unsplash.com/photo-1595956639167-e53b5ce2db00?w=400&h=400&fit=crop&crop=face",
       quote: "L'approche collaborative et transparente m'a donné confiance dès le début. Mon site génère déjà du chiffre d'affaires !",
-      budget: "8 900€",
+      budget: "$11,000",
       status: "Rentable en 2 mois"
     }
   ];
