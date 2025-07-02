@@ -9,7 +9,7 @@ const HeroSection = () => {
       {/* Image de fond adaptative */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/lovable-uploads/hero-image.jpg" 
+          src="/lovable-uploads/10b1b8ab-5eba-4836-9c9b-8c6c6205b090.png" 
           alt="Innovation digitale" 
           className="w-full h-full object-cover opacity-20"
         />
@@ -53,7 +53,7 @@ const HeroSection = () => {
           <div className="hidden lg:block relative">
             <div className="relative">
               <img 
-                src="/lovable-uploads/hero-image.jpg" 
+                src="/lovable-uploads/10b1b8ab-5eba-4836-9c9b-8c6c6205b090.png" 
                 alt="Innovation et technologie" 
                 className="w-full h-auto rounded-3xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500"
               />

@@ -2,7 +2,7 @@
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "Amina Kouassi",
+      name: "Mireille Kabila",
       project: "Application de fitness personnalisée",
       image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop&crop=face",
       quote: "TonAppTonPrix a transformé mon idée en une application incroyable. L'équipe a respecté mon budget et mes délais !",
@@ -10,7 +10,7 @@ const Testimonials = () => {
       status: "Lancée avec succès"
     },
     {
-      name: "Kwame Asante",
+      name: "Patrick Tshisekedi",
       project: "Marketplace pour créateurs",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
       quote: "Grâce à leur expertise, j'ai pu lancer ma plateforme en moins de 4 mois. Les résultats dépassent mes attentes !",
@@ -18,7 +18,7 @@ const Testimonials = () => {
       status: "200+ utilisateurs actifs"
     },
     {
-      name: "Fatou Diallo",
+      name: "Grace Mukendi",
       project: "Site e-commerce durable",
       image: "https://images.unsplash.com/photo-1595956639167-e53b5ce2db00?w=400&h=400&fit=crop&crop=face",
       quote: "L'approche collaborative et transparente m'a donné confiance dès le début. Mon site génère déjà du chiffre d'affaires !",

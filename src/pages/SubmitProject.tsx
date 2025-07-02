@@ -10,16 +10,16 @@ const SubmitProject = () => {
       <Header />
       
       {/* Hero section avec dégradé harmonisé */}
-      <section className="bg-gradient-to-r from-royal-blue via-purple-dark to-sky-blue text-white py-16">
+      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-2 mb-6">
-              <Lightbulb className="w-8 h-8 text-sky-blue" />
+              <Lightbulb className="w-8 h-8 text-blue-200" />
               <h1 className="text-4xl md:text-5xl font-bold font-inter">
                 Partagez votre vision
               </h1>
             </div>
-            <p className="text-xl text-sky-blue/90 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100/90 max-w-3xl mx-auto">
               Remplissez le formulaire ci-dessous pour soumettre votre projet. 
               Notre équipe l'examinera attentivement et vous contactera sous 5-7 jours ouvrés.
             </p>
@@ -46,20 +46,20 @@ const SubmitProject = () => {
       </section>
 
       {/* Info section avec dégradé harmonisé */}
-      <section className="bg-gradient-to-r from-royal-blue via-purple-dark to-sky-blue text-white py-16">
+      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-sky-blue mb-2">5-7 jours</div>
-              <p className="text-sky-blue/90">Délai d'évaluation</p>
+              <div className="text-3xl font-bold text-blue-200 mb-2">5-7 jours</div>
+              <p className="text-blue-100/90">Délai d'évaluation</p>
             </div>
             <div>
-              <div className="text-3xl font-bold text-sky-blue mb-2">100%</div>
-              <p className="text-sky-blue/90">Confidentialité garantie</p>
+              <div className="text-3xl font-bold text-blue-200 mb-2">100%</div>
+              <p className="text-blue-100/90">Confidentialité garantie</p>
             </div>
             <div>
-              <div className="text-3xl font-bold text-sky-blue mb-2">400€</div>
-              <p className="text-sky-blue/90">Budget minimum</p>
+              <div className="text-3xl font-bold text-blue-200 mb-2">$100</div>
+              <p className="text-blue-100/90">Budget minimum</p>
             </div>
           </div>
         </div>

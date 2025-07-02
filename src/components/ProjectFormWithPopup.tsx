@@ -12,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import ConfirmationPopup from './ConfirmationPopup';
-import { Send, User, Mail, Phone, Euro, FileText, Smartphone, Globe } from 'lucide-react';
+import { Send, User, Mail, Phone, DollarSign, FileText, Smartphone, Globe } from 'lucide-react';
 
 const formSchema = z.object({
   title: z.string().min(5, 'Le titre doit contenir au moins 5 caractères'),
@@ -20,7 +20,7 @@ const formSchema = z.object({
   type: z.enum(['website', 'mobile'], {
     required_error: 'Veuillez sélectionner le type de projet',
   }),
-  budget: z.number().min(400, 'Le budget minimum est de 400€'),
+  budget: z.number().min(1, 'Veuillez entrer un budget'),
   fullName: z.string().min(2, 'Le nom complet est requis'),
   email: z.string().email('Email invalide'),
   whatsapp: z.string().optional(),
@@ -39,7 +39,7 @@ const ProjectFormWithPopup = () => {
       title: '',
       description: '',
       type: 'website',
-      budget: 400,
+      budget: 100,
       fullName: '',
       email: '',
       whatsapp: '',
@@ -175,13 +175,13 @@ const ProjectFormWithPopup = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="budget" className="text-gray-700 font-medium flex items-center space-x-1">
-                    <Euro className="w-4 h-4" />
-                    <span>Budget estimé (€) *</span>
+                    <DollarSign className="w-4 h-4" />
+                    <span>Budget estimé ($) *</span>
                   </Label>
                   <Input
                     id="budget"
                     type="number"
-                    min="400"
+                    min="1"
                     step="50"
                     {...form.register('budget', { valueAsNumber: true })}
                     className="border-gray-300 focus:border-royal-blue focus:ring-royal-blue"
@@ -189,7 +189,7 @@ const ProjectFormWithPopup = () => {
                   {form.formState.errors.budget && (
                     <p className="text-red-500 text-sm">{form.formState.errors.budget.message}</p>
                   )}
-                  <p className="text-sm text-gray-500">Budget minimum: 400€</p>
+                  <p className="text-sm text-gray-500">Aucun budget minimum requis</p>
                 </div>
               </div>
 
@@ -260,7 +260,7 @@ const ProjectFormWithPopup = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-gradient-to-r from-royal-blue via-purple-dark to-sky-blue hover:from-royal-blue/90 hover:via-purple-dark/90 hover:to-sky-blue/90 text-white font-semibold py-3 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 min-w-48"
+                className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 text-white font-semibold py-3 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 min-w-48"
               >
                 {isSubmitting ? (
                   <div className="flex items-center space-x-2">

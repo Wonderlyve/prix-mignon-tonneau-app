@@ -9,13 +9,13 @@ const About = () => {
       <Header />
       
       {/* Hero section */}
-      <section className="bg-gradient-to-r from-royal-blue to-sky-blue text-white py-16">
+      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-inter mb-6">
               À propos de TonAppTonPrix
             </h1>
-            <p className="text-lg md:text-xl text-sky-blue/90 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-blue-100/90 max-w-3xl mx-auto">
               Notre mission : démocratiser l'accès au développement digital pour tous les entrepreneurs
             </p>
           </div>
@@ -83,18 +83,18 @@ const About = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-royal-blue to-sky-blue text-white p-8 md:p-12 rounded-3xl">
+          <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white p-8 md:p-12 rounded-3xl">
             <div className="text-center">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 font-inter">
                 Rejoignez notre communauté
               </h2>
-              <p className="text-lg text-sky-blue/90 mb-8 max-w-2xl mx-auto">
+              <p className="text-lg text-blue-100/90 mb-8 max-w-2xl mx-auto">
                 Plus de 500 entrepreneurs nous font déjà confiance pour donner vie 
                 à leurs projets digitaux.
               </p>
               <Link 
                 to="/soumettre"
-                className="inline-block bg-white text-royal-blue font-semibold px-8 py-4 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105"
+                className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105"
               >
                 Démarrer mon projet
               </Link>
