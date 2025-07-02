@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -5,19 +6,20 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Eye, Mail, Phone, Calendar, Euro, Smartphone, Globe, CheckCircle, XCircle, Clock } from 'lucide-react';
+import ProjectDetailsModal from './ProjectDetailsModal';
+import { Eye, Mail, Phone, Calendar, Euro, Smartphone, Globe, CheckCircle, XCircle, Clock, User, FileText } from 'lucide-react';
 
 interface Project {
   id: string;
   title: string;
   description: string;
-  type: string; // Changed from 'website' | 'mobile' to string
+  type: string;
   budget: number;
   full_name: string;
   email: string;
   whatsapp: string | null;
   submitted_at: string;
-  status: string; // Changed from 'pending' | 'accepted' | 'rejected' to string
+  status: string;
 }
 
 const AdminTableReal = () => {
@@ -26,6 +28,8 @@ const AdminTableReal = () => {
   const [filter, setFilter] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('date');
   const [loading, setLoading] = useState(true);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchProjects();
@@ -66,7 +70,6 @@ const AdminTableReal = () => {
         throw error;
       }
 
-      // Mettre à jour l'état local
       setProjects(prev => 
         prev.map(project => 
           project.id === projectId 
@@ -89,6 +92,11 @@ const AdminTableReal = () => {
     }
   };
 
+  const handleViewDetails = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'pending':
@@ -104,6 +112,10 @@ const AdminTableReal = () => {
 
   const getTypeIcon = (type: string) => {
     return type === 'website' ? <Globe className="w-4 h-4" /> : <Smartphone className="w-4 h-4" />;
+  };
+
+  const truncateText = (text: string, maxLength: number) => {
+    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   };
 
   const filteredProjects = projects.filter(project => {
@@ -177,13 +189,13 @@ const AdminTableReal = () => {
         
         <Card className="border-2 border-sky-blue/30">
           <CardContent className="p-6 text-center">
-            <div className="text-3xl font-bold text-sky-blue">{(stats.totalBudget / 1000).toFixed(0)}k€</div>
+            <div className="text-3xl font-bold text-sky-blue">${(stats.totalBudget / 1000).toFixed(0)}k</div>
             <div className="text-gray-600">Budget total</div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Filtres et tri */}
+      {/* Gestion des projets */}
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-royal-blue font-inter">
@@ -229,94 +241,112 @@ const AdminTableReal = () => {
           {/* Liste des projets */}
           <div className="space-y-4">
             {sortedProjects.map((project) => (
-              <Card key={project.id} className="border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+              <Card 
+                key={project.id} 
+                className="border border-gray-200 hover:shadow-lg transition-shadow duration-300 cursor-pointer hover:border-royal-blue/50"
+                onClick={() => handleViewDetails(project)}
+              >
                 <CardContent className="p-6">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
-                    {/* Info principal */}
-                    <div className="lg:col-span-4">
-                      <div className="flex items-center space-x-2 mb-2">
+                    {/* Projet info */}
+                    <div className="lg:col-span-5">
+                      <div className="flex items-center space-x-2 mb-3">
                         {getTypeIcon(project.type)}
                         <h3 className="font-semibold text-royal-blue text-lg font-inter">
                           {project.title}
                         </h3>
+                        <Badge variant="secondary" className="text-xs">
+                          {project.type === 'website' ? 'Site Web' : 'App Mobile'}
+                        </Badge>
                       </div>
-                      <p className="text-gray-600 text-sm line-clamp-2 mb-3">
-                        {project.description}
+                      <p className="text-gray-600 text-sm mb-3 leading-relaxed">
+                        {truncateText(project.description, 120)}
                       </p>
                       <div className="flex items-center space-x-4 text-sm text-gray-500">
                         <div className="flex items-center space-x-1">
-                          <Mail className="w-4 h-4" />
-                          <span>{project.full_name}</span>
+                          <User className="w-4 h-4" />
+                          <span className="font-medium">{project.full_name}</span>
                         </div>
-                        {project.whatsapp && (
-                          <div className="flex items-center space-x-1">
-                            <Phone className="w-4 h-4" />
-                            <span>WhatsApp</span>
-                          </div>
-                        )}
+                        <div className="flex items-center space-x-1">
+                          <Calendar className="w-4 h-4" />
+                          <span>{new Date(project.submitted_at).toLocaleDateString('fr-FR')}</span>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Contact */}
+                    {/* Contact détaillé */}
                     <div className="lg:col-span-3">
-                      <div className="space-y-1 text-sm">
-                        <div className="flex items-center space-x-1">
-                          <Mail className="w-4 h-4 text-gray-400" />
-                          <span className="text-gray-600">{project.email}</span>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-center space-x-2 p-2 bg-gray-50 rounded">
+                          <Mail className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                          <span className="text-gray-600 truncate">{project.email}</span>
                         </div>
                         {project.whatsapp && (
-                          <div className="flex items-center space-x-1">
-                            <Phone className="w-4 h-4 text-gray-400" />
+                          <div className="flex items-center space-x-2 p-2 bg-gray-50 rounded">
+                            <Phone className="w-4 h-4 text-gray-400 flex-shrink-0" />
                             <span className="text-gray-600">{project.whatsapp}</span>
                           </div>
                         )}
                       </div>
                     </div>
 
-                    {/* Détails */}
+                    {/* Budget et statut */}
                     <div className="lg:col-span-2">
-                      <div className="space-y-2">
-                        <div className="flex items-center space-x-1">
-                          <Euro className="w-4 h-4 text-green-600" />
-                          <span className="font-semibold text-green-600">
-                            {project.budget.toLocaleString()}€
-                          </span>
+                      <div className="space-y-3">
+                        <div className="text-center">
+                          <div className="flex items-center justify-center space-x-1 mb-1">
+                            <Euro className="w-4 h-4 text-green-600" />
+                            <span className="font-bold text-green-600 text-xl">
+                              ${project.budget.toLocaleString()}
+                            </span>
+                          </div>
+                          <div className="text-xs text-gray-500">Budget proposé</div>
                         </div>
-                        <div className="flex items-center space-x-1">
-                          <Calendar className="w-4 h-4 text-gray-400" />
-                          <span className="text-gray-600 text-sm">
-                            {new Date(project.submitted_at).toLocaleDateString('fr-FR')}
-                          </span>
+                        <div className="text-center">
+                          {getStatusBadge(project.status)}
                         </div>
                       </div>
                     </div>
 
-                    {/* Statut et actions */}
-                    <div className="lg:col-span-3">
-                      <div className="space-y-3">
-                        <div>
-                          {getStatusBadge(project.status)}
-                        </div>
-                        <div className="flex flex-wrap gap-2">
+                    {/* Actions */}
+                    <div className="lg:col-span-2">
+                      <div className="space-y-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleViewDetails(project);
+                          }}
+                          className="w-full border-royal-blue text-royal-blue hover:bg-royal-blue hover:text-white"
+                        >
+                          <Eye className="w-4 h-4 mr-1" />
+                          Voir détails
+                        </Button>
+                        <div className="flex gap-1">
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => handleStatusChange(project.id, 'accepted')}
-                            className="border-green-500 text-green-700 hover:bg-green-50"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleStatusChange(project.id, 'accepted');
+                            }}
+                            className="flex-1 border-green-500 text-green-700 hover:bg-green-50"
                             disabled={project.status === 'accepted'}
                           >
-                            <CheckCircle className="w-4 h-4 mr-1" />
-                            Accepter
+                            <CheckCircle className="w-3 h-3" />
                           </Button>
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => handleStatusChange(project.id, 'rejected')}
-                            className="border-red-500 text-red-700 hover:bg-red-50"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleStatusChange(project.id, 'rejected');
+                            }}
+                            className="flex-1 border-red-500 text-red-700 hover:bg-red-50"
                             disabled={project.status === 'rejected'}
                           >
-                            <XCircle className="w-4 h-4 mr-1" />
-                            Rejeter
+                            <XCircle className="w-3 h-3" />
                           </Button>
                         </div>
                       </div>
@@ -329,12 +359,23 @@ const AdminTableReal = () => {
 
           {sortedProjects.length === 0 && (
             <div className="text-center py-12">
-              <Eye className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-500 text-lg">Aucun projet trouvé avec ces filtres</p>
             </div>
           )}
         </CardContent>
       </Card>
+
+      {/* Modal des détails */}
+      <ProjectDetailsModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedProject(null);
+        }}
+        onStatusChange={handleStatusChange}
+      />
     </div>
   );
 };
